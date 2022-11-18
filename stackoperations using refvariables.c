@@ -18,7 +18,7 @@ void push(int st[], int *top)
     }
 }
 
-int pop(int st[], int *top)
+void pop(int st[], int *top)
 {
     if ((*top) == -1)
     {
