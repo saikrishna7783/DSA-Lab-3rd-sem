@@ -39,6 +39,7 @@ void display(int st[], int *top)
     }
     else
     {
+        printf("The elements in the stack are : ");
         int i;
         for (i = 0; i <= (*top); i++)
         {
