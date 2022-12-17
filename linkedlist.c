@@ -165,7 +165,7 @@ int main()
             scanf("%d", &pos);
             printf("Enter the element to be inserted : ");
             scanf("%d", &x);
-            insert_at_any_position(pos, x, first);
+            insert_at_any_position(x, pos, first);
             break;
         default:
             exit(0);
