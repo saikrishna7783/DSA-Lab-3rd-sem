@@ -55,21 +55,41 @@ node insert_at_end(int item, node first)
     }
 }
 
-void display(node first)
+node insert_at_any_position(int item, int position, node first)
 {
-    node temp;
-    temp = first;
-    if (temp == NULL)
+    node new, curr, prev;
+    new = malloc(sizeof(struct NODE));
+    int i = 1;
+    (new->value) = item;
+    (new->next) = NULL;
+    if (first == NULL && position == 1)
     {
-        printf("\nThe Linked list is empty!");
+        return new;
     }
     else
     {
-        printf("The elements in the node are : ");
-        while (temp != NULL)
+        prev = NULL;
+        curr = first;
+        while ((i != position) && (curr != NULL))
         {
-            printf("%d\t", (temp->value));
-            temp = (temp->next);
+            prev = curr;
+            curr = (curr->next);
+            i++;
+        }
+        if (i == position)
+        {
+            prev->next = new;
+            new->next = curr;
+            return first;
+        }
+        else if (curr == NULL)
+        {
+            printf("\nPosition not found!");
+            return first;
+        }
+        else if (first != NULL && position == 1)
+        {
+            return insert_at_beginning(item, first);
         }
     }
 }
@@ -114,21 +134,23 @@ node delete_at_the_end(node first)
     }
 }
 
-void insert_at_any_position(int item, int position, node first)
+void display(node first)
 {
-    node temp, newnode;
-    newnode = malloc(sizeof(struct NODE));
-    int i = 1;
+    node temp;
     temp = first;
-    (newnode->value) = item;
-    (newnode->next) = NULL;
-    while (i < (position - 1))
+    if (temp == NULL)
     {
-        temp = temp->next;
-        i++;
+        printf("\nThe Linked list is empty!");
     }
-    newnode->next = temp->next;
-    temp->next = newnode;
+    else
+    {
+        printf("The elements in the node are : ");
+        while (temp != NULL)
+        {
+            printf("%d\t", (temp->value));
+            temp = (temp->next);
+        }
+    }
 }
 
 int main()
@@ -137,7 +159,7 @@ int main()
     node first = NULL;
     while (1)
     {
-        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Display\n4) Delete at beginning\n5) Delete at end\n6) Insert at any position\n-----------------------------------------\nEnter your choice : ");
+        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Insert at any position\n4) Delete at beginning\n5) Delete at end\n6) Display\n-----------------------------------------\nEnter your choice : ");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -152,7 +174,11 @@ int main()
             first = insert_at_end(x, first);
             break;
         case 3:
-            display(first);
+            printf("Enter the position : ");
+            scanf("%d", &pos);
+            printf("Enter the element to be inserted : ");
+            scanf("%d", &x);
+            insert_at_any_position(x, pos, first);
             break;
         case 4:
             first = delete_at_the_beginning(first);
@@ -161,11 +187,7 @@ int main()
             first = delete_at_the_end(first);
             break;
         case 6:
-            printf("Enter the element to be inserted : ");
-            scanf("%d", &pos);
-            printf("Enter the element to be inserted : ");
-            scanf("%d", &x);
-            insert_at_any_position(x, pos, first);
+            display(first);
             break;
         default:
             exit(0);
