@@ -49,9 +49,9 @@ node insert_at_end(int item, node first)
         while ((last->next) != NULL)
         {
             last = (last->next);
-            (last->next) = temp;
-            return first;
         }
+        (last->next) = temp;
+        return first;
     }
 }
 
