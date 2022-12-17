@@ -74,25 +74,29 @@ void display(node first)
     }
 }
 
-void delete_at_the_beginning(node first)
+node delete_at_the_beginning(node first)
 {
     if (first == NULL)
     {
         printf("\nCannot delete, the Linked List is empty");
+        return NULL;
     }
     else
     {
         node temp;
         temp = first;
-        temp = (first->next);
+        first = (first->next);
+        free(temp);
+        return first;
     }
 }
 
-void delete_at_the_end(node first)
+node delete_at_the_end(node first)
 {
     if (first == NULL)
     {
         printf("\nCannot delete, the Linked List is empty");
+        return NULL;
     }
     else
     {
@@ -106,6 +110,7 @@ void delete_at_the_end(node first)
         }
         (prev->next) = NULL;
         free(curr);
+        return first;
     }
 }
 
@@ -115,7 +120,7 @@ int main()
     node first = NULL;
     while (1)
     {
-        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Display\n-----------------------------------------\nEnter your choice : ");
+        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Display\n4) Delete at beginning\n5) Delete at end\n-----------------------------------------\nEnter your choice : ");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -133,12 +138,11 @@ int main()
             display(first);
             break;
         case 4:
-            delete_at_the_beginning(first);
+            first = delete_at_the_beginning(first);
             break;
         case 5:
-            delete_at_the_end(first);
+            first = delete_at_the_end(first);
             break;
-
         default:
             exit(0);
             break;
