@@ -114,13 +114,30 @@ node delete_at_the_end(node first)
     }
 }
 
+void insert_at_any_position(int item, int position, node first)
+{
+    node temp, newnode;
+    newnode = malloc(sizeof(struct NODE));
+    int i = 1;
+    temp = first;
+    (newnode->value) = item;
+    (newnode->next) = NULL;
+    while (i < (position - 1))
+    {
+        temp = temp->next;
+        i++;
+    }
+    newnode->next = temp->next;
+    temp->next = newnode;
+}
+
 int main()
 {
-    int choice, item, x;
+    int choice, pos, item, x;
     node first = NULL;
     while (1)
     {
-        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Display\n4) Delete at beginning\n5) Delete at end\n-----------------------------------------\nEnter your choice : ");
+        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Display\n4) Delete at beginning\n5) Delete at end\n6) Insert at any position\n-----------------------------------------\nEnter your choice : ");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -142,6 +159,13 @@ int main()
             break;
         case 5:
             first = delete_at_the_end(first);
+            break;
+        case 6:
+            printf("Enter the element to be inserted : ");
+            scanf("%d", &pos);
+            printf("Enter the element to be inserted : ");
+            scanf("%d", &x);
+            insert_at_any_position(pos, x, first);
             break;
         default:
             exit(0);
