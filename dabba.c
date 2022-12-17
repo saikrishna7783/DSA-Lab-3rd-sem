@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <alloca.h>
 #include <stdlib.h>
 
 struct NODE
