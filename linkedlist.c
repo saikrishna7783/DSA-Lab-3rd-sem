@@ -134,6 +134,41 @@ node delete_at_the_end(node first)
     }
 }
 
+node delete_at_any_position(int pos, node first)
+{
+    if (first == NULL)
+        printf("The linked list is empty!");
+    else if (first->next == NULL)
+    {
+        if (pos == 1)
+            return NULL;
+        else
+            printf("Position not found!");
+    }
+    else
+    {
+        int count = 0;
+        node prev = NULL, curr = first;
+        while ((count != pos) && (curr != NULL))
+        {
+            prev = curr;
+            curr = (curr->next);
+            count++;
+        }
+        if (count == pos)
+        {
+            prev->next = curr->next;
+            free(curr);
+            return first;
+        }
+        else
+        {
+            printf("\nPosition not found!");
+            return first;
+        }
+    }
+}
+
 void display(node first)
 {
     node temp;
@@ -159,7 +194,7 @@ int main()
     node first = NULL;
     while (1)
     {
-        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Insert at any position\n4) Delete at beginning\n5) Delete at end\n6) Display\n-----------------------------------------\nEnter your choice : ");
+        printf("\n\nMenu\n-----------------------------------------\n1) Insert at beginning\n2) Insert at end\n3) Insert at any position\n4) Delete at beginning\n5) Delete at end\n6) Delete at any position\n7) Display\n-----------------------------------------\nEnter your choice : ");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -178,7 +213,7 @@ int main()
             scanf("%d", &pos);
             printf("Enter the element to be inserted : ");
             scanf("%d", &x);
-            insert_at_any_position(x, pos, first);
+            first = insert_at_any_position(x, pos, first);
             break;
         case 4:
             first = delete_at_the_beginning(first);
@@ -187,6 +222,11 @@ int main()
             first = delete_at_the_end(first);
             break;
         case 6:
+            printf("Enter the position where the element is to be deleted : ");
+            scanf("%d", &pos);
+            first = delete_at_any_position(pos, first);
+            break;
+        case 7:
             display(first);
             break;
         default:
