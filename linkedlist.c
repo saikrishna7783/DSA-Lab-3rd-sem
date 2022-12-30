@@ -136,14 +136,18 @@ node delete_at_the_end(node first)
 
 node delete_at_any_position(int pos, node first)
 {
-    if (first == NULL)
+    if (first == NULL){
         printf("The linked list is empty!");
+        return NULL;
+    }
     else if (first->next == NULL)
     {
         if (pos == 1)
             return NULL;
-        else
+        else{
             printf("Position not found!");
+            return NULL;
+        }
     }
     else
     {
