@@ -141,8 +141,8 @@ void display(node first)
 
 int main()
 {
-    int choice, pos, item, x;
-    node first = NULL;
+    int choice, n, i, val, x;
+    node first = NULL, f1 = NULL, f2 = NULL;
     while (1)
     {
         printf("\n\nEnter the operations to be performed :\n1) Push\n2) Pop\n3) Sort\n4) Concatenate\n5) Reverse\n6) Display\nEnter your choice : ");
@@ -161,7 +161,26 @@ int main()
             first = sort(first);
             break;
         case 4:
-            // first = concatenate(f1, f2);
+
+            printf("Enter the number of fields for linked list 1 : ");
+            scanf("%d", &n);
+            printf("Enter %d entries : ", n);
+            for (i = 0; i < n; i++)
+            {
+                scanf("%d", &val);
+                f1 = insert_at_beginning(val, f1);
+            }
+            printf("Enter the number of fields for linked list 2 : ");
+            scanf("%d", &n);
+            printf("Enter %d entries : ", n);
+            for (i = 0; i < n; i++)
+            {
+                scanf("%d", &val);
+                f2 = insert_at_beginning(val, f2);
+            }
+            printf("The concatenated linked list is : ");
+            f1 = concatenate(f1, f2);
+            display(f1);
             break;
         case 5:
             first = reverse(first);
